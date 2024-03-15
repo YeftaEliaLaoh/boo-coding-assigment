@@ -1,29 +1,46 @@
 'use strict';
 
 const express = require('express');
+var mongoose = require('mongoose');
+
 const router = express.Router();
 
-const profiles = [
-  {
-    "id": 1,
-    "name": "A Martinez",
-    "description": "Adolph Larrue Martinez III.",
-    "mbti": "ISFJ",
-    "enneagram": "9w3",
-    "variant": "sp/so",
-    "tritype": 725,
-    "socionics": "SEE",
-    "sloan": "RCOEN",
-    "psyche": "FEVL",
-    "image": "https://soulverse.boo.world/images/1.png",
-  }
-];
+require('../models/Profile');
+
+var Profile = mongoose.model('Profile');
 
 module.exports = function() {
 
+  router.get('/id', function(req, res, next) {
+    var profileSchema = new Profile(req.body);
+
+    if(req.body.id){
+      Profile.findById(req.body.id).then(function(profile){
+        if(!profile){ 
+          return res.json({profile: profileSchema.toJSONFor(false)}); 
+        }
+        res.render('profile_template', {
+          profile: profileSchema.toJSONFor(profile),
+        });
+      });
+    } else {
+      return res.json({profile: Profile.toJSONFor(false)});
+    }
+
+  });
+
   router.get('/*', function(req, res, next) {
-    res.render('profile_template', {
-      profile: profiles[0],
+    var profileSchema = new Profile(req.body);
+
+      Profile.find().then(function(profile){
+      if(!profile){ 
+        return res.json({profiles: profileSchema.toJSONFor(false)}); 
+      }
+      else{
+        res.render('profile_template', {
+          profile: profileSchema.toJSONFor(profile[0]),
+        });
+      }
     });
   });
 
