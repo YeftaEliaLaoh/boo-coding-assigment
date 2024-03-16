@@ -25,9 +25,9 @@ async function startServer() {
 
         // routes
         app.use('/', require('./src/routes')());
-        app.use('/idA', require('./src/routes')());
         app.use('/register', require('./src/routes')());
         app.use('/login', require('./src/routes')());
+        app.use('/id', require('./src/routes')());
         app.use('/update', require('./src/routes')());
         app.use('/add', require('./src/routes')());
         app.use('/comments', require('./src/routes')());
