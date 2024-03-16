@@ -124,12 +124,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/add', async (req, res) => {
-    Profile.findOne({ username: req.body.username }).then(function(user){
+    Profile.findOne({ username: req.body.profile }).then(function(user){
       if(!user){ return res.sendStatus(401); }
 
-      var comment = new Comment(req.body.comment);
-      comment.article = req.article;
-      comment.author = user;
+      var comment = new Comment(req.body);
+      comment.body = req.body.comment;
+      comment.author = req.body.username;
+      comment.profile = user;
 
       return comment.save().then(function(){
           res.json({comment: comment.toJSONFor(user)});
@@ -140,21 +141,64 @@ router.post('/add', async (req, res) => {
 
 
 router.get('/comments', function(req, res, next){
-  Promise.resolve(req.body ? Profile.findOne({ username: req.body.username }) : null).then(function(user){
-    return Comment.populate({
-      path: 'author',
-      options: {
-        sort: {
-          createdAt: 'desc'
-        }
-      }
-    }).execPopulate().then(function(article) {
-      return res.json({comments: req.article.comments.map(function(comment){
-        return comment.toJSONFor(user);
-      })});
+    Promise.resolve(req.body ? Profile.findOne({ username: req.body.username }) : null).then(async function(user){
+      var sort = 1;
+      const str2 = 'hello';
+
+      if (req.body.sort.toLowerCase() === 'desc') {
+         sort = -1;
+      } 
+      console.log('Sort '+sort);
+
+      Comment.find({ body: { $regex: req.body.comment, $options: 'i' } })
+      .populate('author') // Populate the 'profile' field
+      .sort({ createdAt: sort }) // Sort by createdAt in descending order
+      .exec().then(function(article) {
+        return res.json({comments: article.map(function(comment){
+          return comment.toJSONFor(user);
+        })});
+     // console.log(comments);
+
+   // return comments;
     });
-  }).catch(next);
+  });
 });
+
+router.post('/favorite', function(req, res, next) {
+  var commentId = req.body.comment.id;
+
+  // User.findById(req.payload.id).then(function(user){
+  //   if (!user) { return res.sendStatus(401); }
+
+    Comment.findById(commentId).then(function(comment){
+      if(comment){ 
+        comment.favorites += 1;
+        return comment.save().then(function(){
+          res.json({comment: comment.toJSONFor(false)});
+      });
+      }
+      else{
+        return res.json({comment: comment.toJSONFor(false)});
+      }
+    }).catch(next);
+  });
+//});
+
+router.post('/unfavorite', function(req, res, next) {
+  var commentId = req.body.comment.id;
+
+    Comment.findById(commentId).then(function(comment){
+      if(comment){ 
+        comment.favorites -= 1;
+        return comment.save().then(function(){
+          res.json({comment: comment.toJSONFor(false)});
+      });
+      }
+      else{
+        return res.json({comment: comment.toJSONFor(false)});
+      }
+    }).catch(next);
+  });
 
 return router;
 }

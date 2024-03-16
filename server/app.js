@@ -24,13 +24,15 @@ async function startServer() {
         console.log('Connected to MongoDB '+mongoUri);
 
         // routes
-        app.use('/', require('./routes/profile')());
-        app.use('/id', require('./routes/profile')());
-        app.use('/register', require('./routes/profile')());
-        app.use('/login', require('./routes/profile')());
-        app.use('/update', require('./routes/profile')());
-        app.use('/add', require('./routes/profile')());
-        app.use('/comments', require('./routes/profile')());
+        app.use('/', require('./routes')());
+        app.use('/idA', require('./routes')());
+        app.use('/register', require('./routes')());
+        app.use('/login', require('./routes')());
+        app.use('/update', require('./routes')());
+        app.use('/add', require('./routes')());
+        app.use('/comments', require('./routes')());
+        app.use('/favorite', require('./routes')());
+        app.use('/unfavorite', require('./routes')());
 
         app.listen(PORT, () => {
             console.log(`Server is running on http://localhost:${PORT}`);
