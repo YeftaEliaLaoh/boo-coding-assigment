@@ -18,5 +18,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb-memory-server": "^9.1.7",
     "mongoose": "^8.2.1"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.3.0"
   }
 }

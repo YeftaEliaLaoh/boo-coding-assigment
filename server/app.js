@@ -1,5 +1,5 @@
-require('./models/Profile');
-require('./models/Comment');
+require('./src/models/Profile');
+require('./src/models/Comment');
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -24,15 +24,15 @@ async function startServer() {
         console.log('Connected to MongoDB '+mongoUri);
 
         // routes
-        app.use('/', require('./routes')());
-        app.use('/idA', require('./routes')());
-        app.use('/register', require('./routes')());
-        app.use('/login', require('./routes')());
-        app.use('/update', require('./routes')());
-        app.use('/add', require('./routes')());
-        app.use('/comments', require('./routes')());
-        app.use('/favorite', require('./routes')());
-        app.use('/unfavorite', require('./routes')());
+        app.use('/', require('./src/routes')());
+        app.use('/idA', require('./src/routes')());
+        app.use('/register', require('./src/routes')());
+        app.use('/login', require('./src/routes')());
+        app.use('/update', require('./src/routes')());
+        app.use('/add', require('./src/routes')());
+        app.use('/comments', require('./src/routes')());
+        app.use('/favorite', require('./src/routes')());
+        app.use('/unfavorite', require('./src/routes')());
 
         app.listen(PORT, () => {
             console.log(`Server is running on http://localhost:${PORT}`);
