@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 var ProfileSchema = new mongoose.Schema({
   id: String,
+  username: String,
+  password: String,
   name: String,
   description: String,
   mbti: String,
@@ -23,6 +25,7 @@ ProfileSchema.methods.test = function(){
 ProfileSchema.methods.toJSONFor = function(profile){
   return {
     id: profile._id,
+    username: profile.username,
     name: profile.name,
     description: profile.description,
     mbti: profile.mbti,

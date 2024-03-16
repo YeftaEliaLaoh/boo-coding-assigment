@@ -1,9 +1,9 @@
 require('./models/Profile');
+require('./models/Comment');
+
 const express = require('express');
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-
-var Profile = mongoose.model('Profile');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,19 +26,11 @@ async function startServer() {
         // routes
         app.use('/', require('./routes/profile')());
         app.use('/id', require('./routes/profile')());
-
-        app.post('/profile', async (req, res) => {
-            try {
-                var profile = new Profile(req.body);
-                return profile.save().then(function() {
-                    res.json({profile: profile.toJSONFor(profile)});
-                    //res.status(201).send(profile);
-                });
-            } catch (err) {
-                console.log(err);
-                res.status(400).send(err.message);
-            }
-        });
+        app.use('/register', require('./routes/profile')());
+        app.use('/login', require('./routes/profile')());
+        app.use('/update', require('./routes/profile')());
+        app.use('/add', require('./routes/profile')());
+        app.use('/comments', require('./routes/profile')());
 
         app.listen(PORT, () => {
             console.log(`Server is running on http://localhost:${PORT}`);
