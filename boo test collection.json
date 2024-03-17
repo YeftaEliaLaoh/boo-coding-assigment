@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "f3e498d1-1409-4dbd-beb5-04b6dc0e5352",
+		"name": "boo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21716859"
+	},
+	"item": [
+		{
+			"name": "register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"username\": \"testUser\",\r\n    \"password\": \"test12345\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"username\": \"testProfile\",\r\n    \"password\": \"test12345\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"username\": \"testUser\",\r\n    \"password\": \"test12345\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user detail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"testUser\",\r\n    \"name\": \"A Martinez\",\r\n    \"description\": \"Adolph Larrue Martinez III.\",\r\n    \"mbti\": \"ISFJ\",\r\n    \"enneagram\": \"9w3\",\r\n    \"variant\": \"sp/so\",\r\n    \"tritype\": 725,\r\n    \"socionics\": \"SEE\",\r\n    \"sloan\": \"RCOEN\",\r\n    \"psyche\": \"FEVL\",\r\n    \"image\": \"https://randomuser.me/api/portraits/women/75.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"65f3e49bad5aa9297c2151c4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by username",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"testUser\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/username",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"username"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all user array [0]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Sl you so much!\",\r\n    \"username\": \"testUser\",\r\n    \"profile\": \"testProfile\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);",
+							"",
+							"tests['Response contains \"comment\" property'] = responseJSON.hasOwnProperty('comment');",
+							"",
+							"var comment = responseJSON.comment || {};",
+							"",
+							"tests['Comment has \"id\" property'] = comment.hasOwnProperty('id');",
+							"tests['Comment has \"body\" property'] = comment.hasOwnProperty('body');",
+							"tests['Comment has \"createdAt\" property'] = comment.hasOwnProperty('createdAt');",
+							"tests['\"createdAt\" property is an ISO 8601 timestamp'] = new Date(comment.createdAt).toISOString() === comment.createdAt;",
+							"tests['Comment has \"author\" property'] = comment.hasOwnProperty('author');",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": {\r\n        \"body\": \"Thank you so much!\"\r\n    },\r\n    \"username\": \"tests\"\r\n    \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "favorite comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": {\r\n        \"id\": \"65f585745dc9273b4cc43615\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/favorite",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"favorite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unfavorite comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": {\r\n        \"id\": \"65f58396dc0c70354df099f6\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/unfavorite",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"unfavorite"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

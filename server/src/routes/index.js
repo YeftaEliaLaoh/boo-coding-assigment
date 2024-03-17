@@ -32,8 +32,13 @@ router.post('/register', [
           username: req.body.username,
           password: hashedPassword
       });
-      await user.save();
-      res.status(201).send('User registered successfully');
+      user.save()
+      .then(savedUser => {
+        res.status(201).send('User registered successfully with id : '+ savedUser._id);
+      })
+      .catch(error => {
+        console.error('Error saving user:', error);
+      });
   } catch (err) {
       res.status(500).send('Error registering user');
   }
@@ -106,6 +111,20 @@ router.get('/id', function(req, res, next) {
     return res.json({profile: Profile.toJSONFor(false)});
   }
 
+});
+
+router.get('/username', async function(req, res, next) {
+  var profileSchema = new Profile(req.body);
+
+  if(req.body.username){
+  const profile = await Profile.findOne({ username: req.body.username });
+      if(profile){ 
+        return res.json({profile: profileSchema.toJSONFor(profile)}); 
+      }
+      else {
+        return res.json({profile: profileSchema.toJSONFor(false)});
+     }
+  }
 });
 
 router.get('/', function(req, res, next) {
